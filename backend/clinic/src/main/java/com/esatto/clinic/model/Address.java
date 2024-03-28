@@ -2,6 +2,7 @@ package com.esatto.clinic.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
@@ -24,6 +25,9 @@ public class Address {
 
     @NotNull
     @Size(max = 10, message = "Zip code length must equal or be lower than 10")
+    @Pattern(
+        regexp = "[0-9]+-?[0-9]+",
+        message = "Zip code must consist of digits only (and an optional hyphen or a whitespace in between the digits)")
     private String zipCode;
 
     public Address() {}

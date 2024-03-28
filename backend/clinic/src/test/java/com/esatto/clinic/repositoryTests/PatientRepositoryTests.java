@@ -23,7 +23,7 @@ public class PatientRepositoryTests {
     @Test
     public void testSave() {
         // Given
-        Address address = new Address("street", "city", "zipcode");
+        Address address = new Address("street", "city", "123-123");
         Patient patient = new Patient("John", "Doe", "12345678901", address);
 
         // When
@@ -39,8 +39,8 @@ public class PatientRepositoryTests {
         int limit = 10;
         Long offset = 0L;
 
-        Address address1 = new Address("street", "city", "zipcode");
-        Address address2 = new Address("street", "city", "zipcode");
+        Address address1 = new Address("street", "city", "123-123");
+        Address address2 = new Address("street", "city", "123-123");
         Patient patient1 = new Patient("John", "Doe", "12345678901", address1);
         Patient patient2 = new Patient("John", "Doe", "12345678902", address2);
 
@@ -58,7 +58,7 @@ public class PatientRepositoryTests {
     public void testFindByPESEL() {
         // Given
         String PESEL = "12345678901";
-        Address address = new Address("street", "city", "zipcode");
+        Address address = new Address("street", "city", "123-123");
         Patient patient = new Patient("John", "Doe", PESEL, address);
         patientRepository.save(patient);
 
@@ -73,7 +73,7 @@ public class PatientRepositoryTests {
     public void testDelete() {
         // Given
         String PESEL = "12345678901";
-        Address address = new Address("street", "city", "zipcode");
+        Address address = new Address("street", "city", "123-123");
         Patient patient = new Patient("John", "Doe", PESEL, address);
         patientRepository.save(patient);
 

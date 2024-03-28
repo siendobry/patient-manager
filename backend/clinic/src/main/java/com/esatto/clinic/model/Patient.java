@@ -24,7 +24,7 @@ public class Patient {
     @NotNull
     @Column(unique = true)
     @Size(min = 11, max = 11, message = "PESEL must be exactly 11 characters long")
-    @Pattern(regexp = "[0-9]*", message= "PESEL must consist of digits only")
+    @Pattern(regexp = "[0-9]+", message= "PESEL must consist of digits only")
     private String PESEL;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -1,11 +1,17 @@
 package com.esatto.clinic.service;
 
+import com.esatto.clinic.exception.UniqueConstraintViolation;
 import com.esatto.clinic.model.Patient;
 import com.esatto.clinic.repository.PatientRepository;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -16,8 +22,6 @@ public class PatientServiceImpl implements PatientService {
     public PatientServiceImpl(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
-
-
 
     @Override
     public List<Patient> getPatients(int limit, Long offset) {
@@ -31,12 +35,21 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient savePatient(Patient patient) {
-        return patientRepository.save(patient);
+        try {
+            return patientRepository.save(patient);
+        } catch (DataIntegrityViolationException e) {
+            Set<ConstraintViolation<?>> constraintViolations = new HashSet<>();
+
+            // original exception message should be used here, but it has a bad format
+            constraintViolations.add(new UniqueConstraintViolation("Patient with specified PESEL already exists"));
+
+            throw new ConstraintViolationException(constraintViolations);
+        }
     }
 
     @Override
-    public Patient updatePatient(Long id, Patient updatedPatient) {
-        Patient patient = patientRepository.findById(id).orElse(null);
+    public Patient updatePatient(String PESEL, Patient updatedPatient) {
+        Patient patient = patientRepository.findByPESEL(PESEL).orElse(null);
         if (patient == null) {
             return null;
         }
@@ -51,7 +64,12 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void deletePatient(Long id) {
-        patientRepository.findById(id).ifPresent(patientRepository::delete);
+    public void deletePatient(String PESEL) {
+        Patient patient = patientRepository.findByPESEL(PESEL).orElse(null);
+        if (patient == null) {
+            return;
+        }
+
+        patientRepository.delete(patient);
     }
 }

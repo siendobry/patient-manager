@@ -1,6 +1,8 @@
 package com.esatto.clinic.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -12,10 +14,16 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    @Size(max = 50, message = "Street name length must equal or be lower than 50")
     private String street;
 
+    @NotNull
+    @Size(max = 50, message = "City name length must equal or be lower than 50")
     private String city;
 
+    @NotNull
+    @Size(max = 10, message = "Zip code length must equal or be lower than 10")
     private String zipCode;
 
     public Address() {}

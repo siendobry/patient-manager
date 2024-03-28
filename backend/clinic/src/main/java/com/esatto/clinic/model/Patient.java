@@ -1,6 +1,7 @@
 package com.esatto.clinic.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.util.Objects;
 
@@ -12,14 +13,22 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    @Size(max = 50, message = "First name length must equal or be lower than 50")
     private String firstName;
 
+    @NotNull
+    @Size(max = 50, message = "Last name length must equal or be lower than 50")
     private String lastName;
 
+    @NotNull
+    @Column(unique = true)
+    @Size(min = 11, max = 11, message = "PESEL must be exactly 11 characters long")
+    @Pattern(regexp = "[0-9]*", message= "PESEL must consist of digits only")
     private String PESEL;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     public Patient() {}

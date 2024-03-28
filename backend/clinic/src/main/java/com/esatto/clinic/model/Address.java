@@ -18,16 +18,12 @@ public class Address {
 
     private String zipCode;
 
-    @OneToOne(mappedBy = "address")
-    private Patient patient;
-
     public Address() {}
 
-    public Address(String street, String city, String zipCode, Patient patient) {
+    public Address(String street, String city, String zipCode) {
         this.street = street;
         this.city = city;
         this.zipCode = zipCode;
-        this.patient = patient;
     }
 
     public Long getId() {
@@ -62,14 +58,6 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,12 +66,11 @@ public class Address {
         return (Objects.equals(id, address.id)
              && Objects.equals(street, address.street)
              && Objects.equals(city, address.city)
-             && Objects.equals(zipCode, address.zipCode)
-             && Objects.equals(patient, address.patient));
+             && Objects.equals(zipCode, address.zipCode));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, street, city, zipCode, patient);
+        return Objects.hash(id, street, city, zipCode);
     }
 }

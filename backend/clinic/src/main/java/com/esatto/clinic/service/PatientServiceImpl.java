@@ -29,11 +29,6 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient getPatientByPESEL(String PESEL) {
-        return patientRepository.findByPESEL(PESEL).orElse(null);
-    }
-
-    @Override
     public Patient savePatient(Patient patient) {
         try {
             return patientRepository.save(patient);

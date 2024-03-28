@@ -8,8 +8,6 @@ public interface PatientService {
 
     List<Patient> getPatients(int limit, Long offset);
 
-    Patient getPatientByPESEL(String PESEL);
-
     Patient savePatient(Patient patient);
 
     Patient updatePatient(String PESEL, Patient patient);

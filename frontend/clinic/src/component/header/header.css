@@ -1,0 +1,15 @@
+.header {
+    padding: 12px 10vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(49, 49, 49);
+}
+
+.name {
+    margin: 0;
+}
+
+.add-patient {
+    max-width: 128px;
+}

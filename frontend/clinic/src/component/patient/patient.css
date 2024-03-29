@@ -1,0 +1,34 @@
+.patient-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+    border: 1px solid rgb(49, 49, 49);
+    border-radius: 4px;
+    background-color: rgb(49, 49, 49);
+    overflow: hidden;
+}
+
+.patient-info * {
+    padding: 2px 12px;
+    flex: 1 1 0;
+    background-color: white;
+}
+
+.button-edit, .button-delete {
+    border: none;
+}
+
+.button-edit {
+    background-color: rgb(42, 141, 255);
+    color: white;
+}
+
+.button-delete {
+    background-color: rgb(255, 54, 54);
+    color: white;
+}
+
+.button-edit:hover, .button-delete:hover {
+    cursor: pointer;
+}

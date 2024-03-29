@@ -30,7 +30,7 @@ public class PatientController {
 
     @GetMapping("/list")
     public ResponseEntity<List<PatientDTO>> getPatients(
-            @RequestParam(name = "limit", defaultValue = "10")
+        @RequestParam(name = "limit", defaultValue = "10")
         @Min(value = 1, message = "Limit must be greater than 0")
         @Max(value = 100, message = "Limit must equal or be lower than 100")
         int limit,
@@ -68,8 +68,8 @@ public class PatientController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Void> deletePatient(@RequestParam String PESEL) {
-        patientService.deletePatient(PESEL);
+    public ResponseEntity<Void> deletePatient(@Valid @RequestBody PatientDTO request) {
+        patientService.deletePatient(request.toPatient());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

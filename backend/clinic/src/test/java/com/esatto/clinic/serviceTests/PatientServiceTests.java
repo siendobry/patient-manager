@@ -90,10 +90,13 @@ public class PatientServiceTests {
             return null;
         }).when(patientRepository).delete(patient);
 
-        // When
-        patientService.deletePatient(PESEL);
+        // Then1
+        assertEquals(Optional.of(patient), patientRepository.findByPESEL(PESEL));
 
-        // Then
+        // When
+        patientService.deletePatient(patient);
+
+        // Then2
         assertEquals(Optional.empty(), patientRepository.findByPESEL(PESEL));
     }
 

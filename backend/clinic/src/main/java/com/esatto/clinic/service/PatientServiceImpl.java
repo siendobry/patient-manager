@@ -59,12 +59,12 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void deletePatient(String PESEL) {
-        Patient patient = patientRepository.findByPESEL(PESEL).orElse(null);
-        if (patient == null) {
+    public void deletePatient(Patient patient) {
+        Patient patientToDelete = patientRepository.findByPESEL(patient.getPESEL()).orElse(null);
+        if (patientToDelete == null) {
             return;
         }
 
-        patientRepository.delete(patient);
+        patientRepository.delete(patientToDelete);
     }
 }

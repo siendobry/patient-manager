@@ -1,7 +1,5 @@
 package com.esatto.clinic.controllerTests;
 
-import com.esatto.clinic.controller.PatientController;
-import com.esatto.clinic.model.Address;
 import com.esatto.clinic.model.Patient;
 import com.esatto.clinic.payload.AddressDTO;
 import com.esatto.clinic.payload.PatientDTO;

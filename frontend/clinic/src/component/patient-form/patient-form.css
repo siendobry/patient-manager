@@ -1,0 +1,39 @@
+.patient-form-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.459);
+}
+
+.patient-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px 48px;
+    background-color: white;
+    border: 1px solid rgb(49, 49, 49);
+    border-radius: 8px;
+}
+
+.patient-form * {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.patient-form h2 {
+    text-align: center;
+}
+
+.patient-form button {
+    margin: 16px 0;
+    align-self: center;
+    padding: 4px 12px;
+}
